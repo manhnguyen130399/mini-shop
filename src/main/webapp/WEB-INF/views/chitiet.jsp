@@ -60,8 +60,15 @@
 			       		 <li><a href="dangnhap/">ĐĂNG NHẬP</a></li>
 			       	</c:otherwise>
 			       </c:choose>
-			      
-			        <li><a href="#"><img src='<c:url value="/resources/image/shopping-cart.png"/>' width="24px" height="24px" /></a></li>
+			        <li id="giohang"><a href="#"><img style="width: 24px; height: 24px;" src="<c:url value="/resources/image/shopping-cart.png" /> "/>
+					       	<c:if test="${soluongsanphamgiohang >0}">
+					        	 <div class="circle-giohang"><span >${soluongsanphamgiohang}</span></div>
+					        </c:if>
+					         <c:if test="${soluongsanphamgiohang <=0||soluongsanphamgiohang==null}">
+					        	 <div><span >${soluongsanphamgiohang}</span></div>
+					        </c:if>
+			       </a></li>
+			        
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->

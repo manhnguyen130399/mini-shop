@@ -26,7 +26,18 @@ end menu*/
 ul{
 	list-style-type: none;
 }
-
+.circle-giohang{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	margin-top:-32px;
+	margin-left:10px;
+	border-radius: 30px;
+	line-height:22px;
+	font-size: 11px;
+	text-align: center;
+	background: red;
+}
 
 #body-login{
 	background-color: #00909C;

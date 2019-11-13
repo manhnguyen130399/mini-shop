@@ -74,12 +74,6 @@ public class APIController {
 				listGioHangs.get(vitri).setSoluong(soluongMoi);
 			}
 		}
-		List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");;
-		System.out.println(listGioHangs.size());
-		for (GioHang gioHang : listGioHangs) {
-			System.out.println(gioHang.getMasp() + "-" + gioHang.getTenmau() + "-" + 
-					gioHang.getTensize() + "" +gioHang.getSoluong());
-		}
 	}
 	
 	
@@ -92,6 +86,17 @@ public class APIController {
 			}
 		}
 		return  -1;
+	}
+	@GetMapping("LaySoLuongGioHang")
+	@ResponseBody
+	public String LaySoLuongGioHang(HttpSession httpSession){
+		if(null != httpSession.getAttribute("giohang"))
+		{
+			List<GioHang>listGioHangs=(List<GioHang>) httpSession.getAttribute("giohang");
+			return listGioHangs.size()+"";
+			
+		}
+		return "";
 	}
 
 }

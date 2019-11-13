@@ -51,7 +51,6 @@ $(document).ready(function(){
 		var masp=$("#tensp").attr("data-masp");
 		var giatien=$("#giatien").attr("data-value");
 		var soluong=$(this).closest("tr").find(".soluong").text();
-		alert(tensp+masp+" "+giatien+" "+tenmau +tensize+soluong);
 		
 		$.ajax({
 			url:"/mini-shop/api/ThemGioHang",
@@ -67,18 +66,18 @@ $(document).ready(function(){
 				soluong:soluong
 			},
 			success: function(value){
-				if(value=="true")
-				{
-				$("#ketqua").text("Đăng nhập thành công");
-				duongdanht=window.location.href;
-				duongdan=duongdanht.replace("dangnhap/","");
-				window.location=duongdan;
-				}
-			else{
-				$("#ketqua").text("Đăng nhập thất bại");
+				
+			}	
+	}).done(function() {
+		$.ajax({
+			url:"/mini-shop/api/LaySoLuongGioHang",
+			type:"GET",
+			success: function(value){
+				$("#giohang").find("div").addClass("circle-giohang");
+				$("#giohang").find("div").html("<span>"+value+"</span>");
+				
 			}
-			}
-			
+	})
 	})
 	})
 	
