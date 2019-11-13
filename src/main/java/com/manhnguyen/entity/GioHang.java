@@ -28,6 +28,7 @@ public class GioHang {
 	public void setTensp(String tensp) {
 		this.tensp = tensp;
 	}
+
 	public String getGiatien() {
 		return giatien;
 	}

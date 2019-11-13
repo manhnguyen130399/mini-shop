@@ -86,7 +86,7 @@
 					</div>
 					
 					<div class="col-sm-8 col-md-8">
-						<h3 id="tensp">${chitietsp.getTensanpham()}</h3>
+						<h3 id="tensp" data-masp="${chitietsp.getMasanpham()}">${chitietsp.getTensanpham()}</h3>
 						<h4 id="giatien" data-value="${chitietsp.getGiatien()}" style="color: red">${chitietsp.getGiatien()} VNĐ </h4>
 						<table class="table">
 							<thead>

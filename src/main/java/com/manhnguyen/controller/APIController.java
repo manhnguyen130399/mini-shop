@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +24,7 @@ public class APIController {
 	@Autowired
 	NhanVienService nvNhanVienService;
 	
-	List<GioHang>gioHangs=new ArrayList<GioHang>();
+	
 	@GetMapping("KiemTraDangNhap")
 	@ResponseBody
 	public String KiemTraDangNhap(@RequestParam String tendangnhap,@RequestParam String matkhau,ModelMap map) {
@@ -35,12 +34,64 @@ public class APIController {
 		return ""+kiemtra;
 	}
 	@GetMapping("ThemGioHang")
-	public void ThemGioHang(@ModelAttribute GioHang gioHang, HttpSession httpSession) {
+	@ResponseBody
+	public void themgiohang(@RequestParam String tensp, @RequestParam int masp, @RequestParam int masize , 
+			@RequestParam int mamau, @RequestParam int soluong, @RequestParam String giatien, 
+			@RequestParam String tenmau, @RequestParam String tensize, HttpSession httpSession) {
 		
-		gioHangs.add(gioHang);
-		httpSession.setAttribute("giohang", gioHangs);
-		List<GioHang>list=(List<GioHang>) httpSession.getAttribute("giohang");
-		System.out.println(gioHangs.size() +" "+list.size());
+		if(null==httpSession.getAttribute("giohang")) {
+			List<GioHang> giohangs = new ArrayList<GioHang>();
+			
+			GioHang gioHang = new GioHang();
+			gioHang.setGiatien(giatien);
+			gioHang.setMamau(mamau);
+			gioHang.setMasize(masize);
+			gioHang.setMasp(masp);
+			gioHang.setSoluong(1);
+			gioHang.setTenmau(tenmau);
+			gioHang.setTensize(tensize);
+			gioHang.setTensp(tensp);
+			
+			
+			giohangs.add(gioHang);
+			httpSession.setAttribute("giohang", giohangs);
+		}else {
+			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");;
+			int vitri = kiemTraSPTonTaiGioHang(listGioHangs, httpSession, masp, mamau, masize);
+			if(vitri == -1) {
+				GioHang gioHang = new GioHang();
+				gioHang.setGiatien(giatien);
+				gioHang.setMamau(mamau);
+				gioHang.setMasize(masize);
+				gioHang.setMasp(masp);
+				gioHang.setSoluong(1);
+				gioHang.setTenmau(tenmau);
+				gioHang.setTensize(tensize);
+				gioHang.setTensp(tensp);
+				listGioHangs.add(gioHang);
+			}else {
+				int soluongMoi = listGioHangs.get(vitri).getSoluong() + 1;
+				listGioHangs.get(vitri).setSoluong(soluongMoi);
+			}
+		}
+		List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");;
+		System.out.println(listGioHangs.size());
+		for (GioHang gioHang : listGioHangs) {
+			System.out.println(gioHang.getMasp() + "-" + gioHang.getTenmau() + "-" + 
+					gioHang.getTensize() + "" +gioHang.getSoluong());
+		}
+	}
+	
+	
+	private int kiemTraSPTonTaiGioHang(List<GioHang> listGioHangs ,HttpSession httpSession, int masp, int mamau, int masize) {
+		for(int i = 0;  i < listGioHangs.size(); i++) {
+			if(listGioHangs.get(i).getMasp() == masp 
+					&& listGioHangs.get(i).getMamau() == mamau 
+					&& listGioHangs.get(i).getMasize() == masize) {
+				return i;
+			}
+		}
+		return  -1;
 	}
 
 }
