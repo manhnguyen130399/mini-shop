@@ -81,4 +81,23 @@ $(document).ready(function(){
 	})
 	})
 	
+	GanTongTienGioHang();
+	function GanTongTienGioHang(){
+		var tongtiensp=0;
+		$(".giatien").each(function() {
+			var giatien=$(this).text();
+			tongtiensp+=parseFloat(giatien);
+			$("#tongtien").html(tongtiensp+" VND");
+			
+		})
+	}
+	
+	$(".soluong-giohang").change(function () {
+		var soluong=$(this).val();
+		var giatien=$(this).closest("tr").find(".giatien").attr("data-value");
+		var tongtien=soluong*parseInt(giatien);
+		$(this).closest("tr").find(".giatien").html(tongtien+" VND");
+		GanTongTienGioHang();
+	})
+	
 })
