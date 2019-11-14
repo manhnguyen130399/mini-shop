@@ -85,19 +85,40 @@ $(document).ready(function(){
 	function GanTongTienGioHang(){
 		var tongtiensp=0;
 		$(".giatien").each(function() {
+			var soluong = $(this).closest("tr").find(".soluong-giohang").val();
 			var giatien=$(this).text();
-			tongtiensp+=parseFloat(giatien);
+			var tongtien=parseFloat(giatien)*soluong;
+			tongtiensp+=tongtien;
 			$("#tongtien").html(tongtiensp+" VND");
-			
 		})
 	}
 	
 	$(".soluong-giohang").change(function () {
+		
 		var soluong=$(this).val();
 		var giatien=$(this).closest("tr").find(".giatien").attr("data-value");
-		var tongtien=soluong*parseInt(giatien);
-		$(this).closest("tr").find(".giatien").html(tongtien+" VND");
 		GanTongTienGioHang();
+	
+				
+		var mamau=$(this).closest("tr").find(".mau").attr("data-mamau");
+		var masize=$(this).closest("tr").find(".size").attr("data-size");
+		var masp=$(this).closest("tr").find(".tensp").attr("data-masp");
+		$.ajax({
+			url:"/mini-shop/api/CapNhatGioHang",
+			type:"GET",
+			data:{
+				masp:masp,
+				masize:masize,
+				mamau:mamau,
+				soluong:soluong
+			},
+			success: function(value){
+				
+			}	
 	})
+	})
+	
+
+
 	
 })

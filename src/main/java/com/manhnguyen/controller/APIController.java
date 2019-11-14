@@ -33,6 +33,15 @@ public class APIController {
 		map.addAttribute("tendangnhap",tendangnhap);
 		return ""+kiemtra;
 	}
+	@GetMapping("CapNhatGioHang")
+	@ResponseBody
+	public void CapNhatGioHang(HttpSession httpSession,@RequestParam int soluong,@RequestParam int masp,@RequestParam int mamau,@RequestParam int masize) {
+		if(null != httpSession.getAttribute("giohang")) {
+			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
+			int vitri=kiemTraSPTonTaiGioHang(listGioHangs, httpSession, masp, mamau, masize);
+			listGioHangs.get(vitri).setSoluong(soluong);
+		}
+	}
 	@GetMapping("ThemGioHang")
 	@ResponseBody
 	public void themgiohang(@RequestParam String tensp, @RequestParam int masp, @RequestParam int masize , 
@@ -56,7 +65,7 @@ public class APIController {
 			giohangs.add(gioHang);
 			httpSession.setAttribute("giohang", giohangs);
 		}else {
-			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");;
+			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
 			int vitri = kiemTraSPTonTaiGioHang(listGioHangs, httpSession, masp, mamau, masize);
 			if(vitri == -1) {
 				GioHang gioHang = new GioHang();
@@ -98,5 +107,6 @@ public class APIController {
 		}
 		return "";
 	}
+	
 
 }

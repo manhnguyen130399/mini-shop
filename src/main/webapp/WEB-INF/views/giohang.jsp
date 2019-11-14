@@ -95,11 +95,11 @@
 					<c:forEach var="value" items="${giohang }">
 					
 								<tr>
-										<td>${value.getTensp() }</td>
+										<td class="tensp"data-masp="${value.getMasp()}">${value.getTensp() }</td>
 										<td class="mau" data-mamau="${value.getMamau()}">${value.getTenmau()} </td>
 										<td class="size"data-size="${value.getMasize()}"> ${value.getTensize()} </td>
-										<td class="soluong"><input class="soluong-giohang"type="number"min="1"value="${value.getSoluong()}"/></td>
-										<td class="giatien" data-value="${value.getGiatien() }">${value.getGiatien()} VND</td>
+										<td class="soluong"><input class="soluong-giohang"type="number"min="1" value="${value.getSoluong()}"/></td>
+										<td class="giatien" data-value="${value.getGiatien() }">${value.getGiatien()}</td>
 										<td class="btn btn-danger">Xóa</td>	
 								</tr>
 					
