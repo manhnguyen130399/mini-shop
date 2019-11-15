@@ -32,7 +32,7 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav navbar-center">
-			         <li class ="active"><a  href="#">TRANG CHỦ</a></li>
+			         <li class ="active"><a  href="/mini-shop/">TRANG CHỦ</a></li>
 			         <li class="dropdown open">
 			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
@@ -57,10 +57,10 @@
 			       		  <li><a id="user" href="dangnhap/">${dangnhap}</a></li>
 			       	</c:when>
 			       	<c:otherwise>
-			       		 <li><a href="dangnhap/">ĐĂNG NHẬP</a></li>
+			       		 <li><a href="/mini-shop/dangnhap/">ĐĂNG NHẬP</a></li>
 			       	</c:otherwise>
 			       </c:choose>
-			        <li id="giohang"><a href="#"><img style="width: 24px; height: 24px;" src="<c:url value="/resources/image/shopping-cart.png" /> "/>
+			        <li id="giohang"><a href="/mini-shop/giohang/"><img style="width: 24px; height: 24px;" src="<c:url value="/resources/image/shopping-cart.png" /> "/>
 					       	<c:if test="${soluongsanphamgiohang >0}">
 					        	 <div class="circle-giohang"><span >${soluongsanphamgiohang}</span></div>
 					        </c:if>

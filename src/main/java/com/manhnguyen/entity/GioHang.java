@@ -59,6 +59,10 @@ public class GioHang {
 	public void setSoluong(int soluong) {
 		this.soluong = soluong;
 	}
+	public int sum() {
+		int tongtien=Integer.parseInt(getGiatien());
+		return tongtien*getSoluong();
+	}
 	
 
 }

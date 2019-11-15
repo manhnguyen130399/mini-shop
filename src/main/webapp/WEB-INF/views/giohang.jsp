@@ -57,7 +57,7 @@
 			       		  <li><a id="user" href="dangnhap/">${dangnhap}</a></li>
 			       	</c:when>
 			       	<c:otherwise>
-			       		 <li><a href="dangnhap/">ĐĂNG NHẬP</a></li>
+			       		 <li><a href="/mini-shop/dangnhap/">ĐĂNG NHẬP</a></li>
 			       	</c:otherwise>
 			       </c:choose>
 			        <li id="giohang"><a href="#"><img style="width: 24px; height: 24px;" src="<c:url value="/resources/image/shopping-cart.png" /> "/>
@@ -99,7 +99,7 @@
 										<td class="mau" data-mamau="${value.getMamau()}">${value.getTenmau()} </td>
 										<td class="size"data-size="${value.getMasize()}"> ${value.getTensize()} </td>
 										<td class="soluong"><input class="soluong-giohang"type="number"min="1" value="${value.getSoluong()}"/></td>
-										<td class="giatien" data-value="${value.getGiatien() }">${value.getGiatien()}</td>
+										<td class="giatien" data-value="${value.getGiatien() }">${value.getGiatien() }</td>
 										<td class="btn btn-danger">Xóa</td>	
 								</tr>
 					

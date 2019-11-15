@@ -99,7 +99,14 @@ $(document).ready(function(){
 		var giatien=$(this).closest("tr").find(".giatien").attr("data-value");
 		GanTongTienGioHang();
 	
-				
+		
+		
+//		var tongtien=soluong*parseInt(giatien);
+//		
+//		$(this).closest("tr").find(".giatien").html(tongtien+"");
+		
+		
+		
 		var mamau=$(this).closest("tr").find(".mau").attr("data-mamau");
 		var masize=$(this).closest("tr").find(".size").attr("data-size");
 		var masp=$(this).closest("tr").find(".tensp").attr("data-masp");
@@ -110,7 +117,8 @@ $(document).ready(function(){
 				masp:masp,
 				masize:masize,
 				mamau:mamau,
-				soluong:soluong
+				soluong:soluong,
+				
 			},
 			success: function(value){
 				

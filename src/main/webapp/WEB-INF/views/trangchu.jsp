@@ -32,7 +32,7 @@
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav navbar-center">
-			         <li class ="active"><a  href="#">TRANG CHỦ</a></li>
+			         <li class ="active"><a  href="/mini-shop/">TRANG CHỦ</a></li>
 			         <li class="dropdown open">
 			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
@@ -61,7 +61,7 @@
 			       	</c:otherwise>
 			       </c:choose>
 			      
-			        <li><a href="#"><img src='<c:url value="/resources/image/shopping-cart.png"/>' width="24px" height="24px" /></a></li>
+			        <li><a href="giohang/"><img src='<c:url value="/resources/image/shopping-cart.png"/>' width="24px" height="24px" /></a></li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->

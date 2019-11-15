@@ -40,6 +40,7 @@ public class APIController {
 			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
 			int vitri=kiemTraSPTonTaiGioHang(listGioHangs, httpSession, masp, mamau, masize);
 			listGioHangs.get(vitri).setSoluong(soluong);
+			
 		}
 	}
 	@GetMapping("ThemGioHang")
@@ -106,6 +107,9 @@ public class APIController {
 			
 		}
 		return "";
+	}
+	public float Giatien(int sl,float giatien) {
+		return sl*giatien;
 	}
 	
 
