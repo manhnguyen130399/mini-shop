@@ -94,13 +94,13 @@
 				<tbody>
 					<c:forEach var="value" items="${giohang }">
 					
-								<tr>
+								<tr data-machitiet="${value.getMachitiet()}">
 										<td class="tensp"data-masp="${value.getMasp()}">${value.getTensp() }</td>
 										<td class="mau" data-mamau="${value.getMamau()}">${value.getTenmau()} </td>
 										<td class="size"data-size="${value.getMasize()}"> ${value.getTensize()} </td>
 										<td class="soluong"><input class="soluong-giohang"type="number"min="1" value="${value.getSoluong()}"/></td>
 										<td class="giatien" data-value="${value.getGiatien() }">${value.getGiatien() }</td>
-										<td class="btn btn-danger">Xóa</td>	
+										<td class="btn btn-danger xoa-giohang">Xóa</td>	
 								</tr>
 					
 					
@@ -116,24 +116,24 @@
 					<form action="" method="post">
 					<label for="tenguoimua">Tên người mua
 					</label>
-					<input id="tennguoimua" class="form-control"/>
+					<input id="tennguoimua" name="tenkhachhang"class="form-control"/>
 					<label for="sdt">Số điện thoại liên lạc
 					</label>
-					<input id="sdt" class="form-control"/>
+					<input id="sdt" name="sodt" class="form-control"/>
 					<div class="radio">
-                            <label><input type="radio" name="hinhThucGiaoHang" checked value="Giao Hàng tận nơi">Giao Hàng tận nơi</label>
+                            <label ></label><input checked="" type="radio" name="hinhthucgiaohang" checked value="Giao Hàng tận nơi">Giao Hàng tận nơi</label>
                         </div>
                     <div class="radio">
-                            <label><input type="radio" name="hinhThucGiaoHang" value="Giao Hàng tận nơi">Nhận hàng tại cửa hàng</label>
+                            <label><input type="radio" name="hinhthucgiaohang" value="Giao Hàng cửa hàng">Nhận hàng tại cửa hàng</label>
                         </div> 
     
 					<label for="diachi">Địa chỉ nhận hàng
 					</label>
-					<input id="diachi" class="form-control"/>
+					<input id="diachi"   name="diachigiaohang"class="form-control"/>
 					<label for="ghichu">Ghi chú
 					</label>
 					
-					<textarea id="ghichu" row="5" class="form-control"></textarea><br/>
+					<textarea id="ghichu" row="5" class="form-control" name="ghichu"></textarea><br/>
 					<input type="submit" class="btn btn-primary" value="Đặt hàng"/>
 					</form>
 				</div>

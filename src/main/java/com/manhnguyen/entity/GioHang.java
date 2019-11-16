@@ -5,6 +5,8 @@ public class GioHang {
 	int masize;
 	int mamau;
 	int soluong;
+	int machitiet;
+
 	String tensp;
 	String giatien;
 	String tenmau;
@@ -43,6 +45,12 @@ public class GioHang {
 	}
 	public String getTensize() {
 		return tensize;
+	}
+	public int getMachitiet() {
+		return machitiet;
+	}
+	public void setMachitiet(int machitiet) {
+		this.machitiet = machitiet;
 	}
 	public void setTensize(String tensize) {
 		this.tensize = tensize;

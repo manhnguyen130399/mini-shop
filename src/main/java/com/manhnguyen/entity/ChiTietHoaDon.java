@@ -1,16 +1,18 @@
 package com.manhnguyen.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name="CHITIETHOADON")
-public class ChiTietHoaDon {
+public class ChiTietHoaDon implements Serializable {
 
 	@EmbeddedId
 	ChiTietHoaDonId chiTietHoaDonId;
 	private int soluong;
-	private int giatien;
+	private String giatien;
 	public ChiTietHoaDonId getChiTietHoaDonId() {
 		return chiTietHoaDonId;
 	}
@@ -23,11 +25,12 @@ public class ChiTietHoaDon {
 	public void setSoluong(int soluong) {
 		this.soluong = soluong;
 	}
-	public int getGiatien() {
+	public String getGiatien() {
 		return giatien;
 	}
-	public void setGiatien(int giatien) {
+	public void setGiatien(String giatien) {
 		this.giatien = giatien;
 	}
+	
 	
 }

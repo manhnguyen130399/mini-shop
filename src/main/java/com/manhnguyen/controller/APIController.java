@@ -43,12 +43,22 @@ public class APIController {
 			
 		}
 	}
+	@GetMapping("XoaGioHang")
+	@ResponseBody
+	public void XoaGioHang(HttpSession httpSession,@RequestParam int masp,@RequestParam int mamau,@RequestParam int masize) {
+		if(null != httpSession.getAttribute("giohang")) {
+			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
+			int vitri=kiemTraSPTonTaiGioHang(listGioHangs, httpSession, masp, mamau, masize);
+			listGioHangs.remove(vitri);
+			
+		}
+	}
 	@GetMapping("ThemGioHang")
 	@ResponseBody
 	public void themgiohang(@RequestParam String tensp, @RequestParam int masp, @RequestParam int masize , 
 			@RequestParam int mamau, @RequestParam int soluong, @RequestParam String giatien, 
-			@RequestParam String tenmau, @RequestParam String tensize, HttpSession httpSession) {
-		
+			@RequestParam String tenmau, @RequestParam String tensize, HttpSession httpSession,
+			@RequestParam int machitiet	) {
 		if(null==httpSession.getAttribute("giohang")) {
 			List<GioHang> giohangs = new ArrayList<GioHang>();
 			
@@ -61,6 +71,7 @@ public class APIController {
 			gioHang.setTenmau(tenmau);
 			gioHang.setTensize(tensize);
 			gioHang.setTensp(tensp);
+			gioHang.setMachitiet(machitiet);
 			
 			
 			giohangs.add(gioHang);
@@ -78,6 +89,7 @@ public class APIController {
 				gioHang.setTenmau(tenmau);
 				gioHang.setTensize(tensize);
 				gioHang.setTensp(tensp);
+				gioHang.setMachitiet(machitiet);
 				listGioHangs.add(gioHang);
 			}else {
 				int soluongMoi = listGioHangs.get(vitri).getSoluong() + 1;

@@ -114,7 +114,7 @@
 										<td class="mau" data-mamau="${chitietsanpham.getMauSanPham().getMamau()}">${chitietsanpham.getMauSanPham().getTenmau()} </td>
 										<td class="size"data-size="${chitietsanpham.getSizeSanPham().getMasize()}"> ${chitietsanpham.getSizeSanPham().getSize()} </td>
 										<td class="soluong">${chitietsanpham.getSoluong()}</td>
-										<td><button class="btn-success btn-gio-hang">Giỏ hàng</button></td>
+										<td><button data-machitiet="${chitietsanpham.getMachitietsanpham()}"class="btn-success btn-gio-hang">Giỏ hàng</button></td>
 								</tr>
 							</c:forEach>
 							

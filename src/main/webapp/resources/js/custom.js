@@ -51,11 +51,12 @@ $(document).ready(function(){
 		var masp=$("#tensp").attr("data-masp");
 		var giatien=$("#giatien").attr("data-value");
 		var soluong=$(this).closest("tr").find(".soluong").text();
-		
+		var machitiet=$(this).attr("data-machitiet");
 		$.ajax({
 			url:"/mini-shop/api/ThemGioHang",
 			type:"GET",
 			data:{
+				
 				masp:masp,
 				masize:masize,
 				mamau:mamau,
@@ -63,7 +64,8 @@ $(document).ready(function(){
 				giatien:giatien,
 				tenmau:tenmau,
 				tensize:tensize,
-				soluong:soluong
+				soluong:soluong,
+				machitiet:machitiet
 			},
 			success: function(value){
 				
@@ -125,8 +127,26 @@ $(document).ready(function(){
 			}	
 	})
 	})
-	
+	$(".xoa-giohang").click(function() {
+		var self=$(this);
+		var mamau=$(this).closest("tr").find(".mau").attr("data-mamau");
+		var masize=$(this).closest("tr").find(".size").attr("data-size");
+		var masp=$(this).closest("tr").find(".tensp").attr("data-masp");
+		
 
-
-	
+		$.ajax({
+			url:"/mini-shop/api/XoaGioHang",
+			type:"GET",
+			data:{
+				masp:masp,
+				masize:masize,
+				mamau:mamau,
+				
+			},
+			success: function(value){
+				self.closest("tr").remove();
+				GanTongTienGioHang();
+							}	
+	})
+	})
 })
