@@ -18,9 +18,9 @@ $(document).ready(function(){
 				if(value=="true")
 				{
 				$("#ketqua").text("Đăng nhập thành công");
-				duongdanht=window.location.href;
-				duongdan=duongdanht.replace("dangnhap/","");
-				window.location=duongdan;
+				old=document.referrer;
+				
+				window.location=old;
 				}
 			else{
 				$("#ketqua").text("Đăng nhập thất bại");
