@@ -4,6 +4,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
@@ -45,9 +47,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  						<label><input class="checkboxsanpham" type="checkbox" value=""></label>
 					</div>
 				</td>
-				<td>Product Name</td>
-				<td>Prices</td>
-				<td>For</td>
+				<td>Tên Sản Phẩm</td>
+				<td>Giá</td>
+				<td>Dành cho</td>
 			</tr>
 			
 		</thead>
