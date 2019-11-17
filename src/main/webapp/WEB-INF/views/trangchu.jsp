@@ -144,7 +144,7 @@
 			<div class="col-sm-4 col-md-4 wow flash">
 				<p><span class="title-footer">GÓP Ý</span></p>
 				<form action="" method="post">
-					<input  class="material-textinput" style="margin-bottom: 8px"" placeholder="Email" name="tenNhanVien">
+					<input  class="material-textinput" style="margin-bottom: 8px" placeholder="Email" name="tenNhanVien">
 					<textarea name="tuoi" rows="4" cols="50" placeholder="Ý kiến đóng góp"></textarea>
 					<button class="material-button">Đồng ý</button>
 					

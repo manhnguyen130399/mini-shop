@@ -29,6 +29,8 @@ public class SanPham {
 	private String giatien;
 	private String mota;
 	private String hinhsanpham;
+	private String gianhcho;
+	
 	
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="masanpham")
@@ -102,6 +104,14 @@ public class SanPham {
 
 	public void setDanhsachKhuyenMais(Set<KhuyenMai> danhsachKhuyenMais) {
 		this.danhsachKhuyenMais = danhsachKhuyenMais;
+	}
+
+	public String getGianhcho() {
+		return gianhcho;
+	}
+
+	public void setGianhcho(String gianhcho) {
+		this.gianhcho = gianhcho;
 	}
 	
 }
