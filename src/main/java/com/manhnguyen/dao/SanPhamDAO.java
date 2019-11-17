@@ -36,6 +36,15 @@ public class SanPhamDAO implements SanPhamImpl {
 		SanPham listSanPhams=(SanPham) session.createQuery(query).getSingleResult();
 		return listSanPhams;
 	}
+
+	@Transactional
+	public List<SanPham> LayDSSPTheoDanhMuc(int madanhmuc) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		String query="from SANPHAM sp where sp. danhMucSanPham.madanhmuc='"+madanhmuc+"'";
+		List<SanPham> listSanPhams=(List<SanPham>) session.createQuery(query).getResultList();
+		return listSanPhams;
+	}
 	
 
 }

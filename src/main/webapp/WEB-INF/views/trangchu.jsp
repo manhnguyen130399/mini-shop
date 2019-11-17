@@ -34,15 +34,13 @@
 			      <ul class="nav navbar-nav navbar-center">
 			         <li class ="active"><a  href="/mini-shop/">TRANG CHỦ</a></li>
 			         <li class="dropdown open">
-			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SẢN PHẨM <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#">Action</a></li>
-			            <li><a href="#">Another action</a></li>
-			            <li><a href="#">Something else here</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Separated link</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">One more separated link</a></li>
+				         <c:forEach var="value" items="${danhmuc }">
+				         	
+							<li><a href="sanpham/${value.getMadanhmuc() }/${value.getTendanhmuc()}">${value.getTendanhmuc()}</a></li>
+						</c:forEach>
+		
 			          </ul>
 			        </li>
 			        <li><a href="#">DỊCH VỤ</a></li>

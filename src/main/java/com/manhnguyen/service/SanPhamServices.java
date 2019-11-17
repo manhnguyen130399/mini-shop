@@ -23,4 +23,8 @@ public class SanPhamServices implements SanPhamImpl {
 		
 	}
 
+	public List<SanPham> LayDSSPTheoDanhMuc(int madanhmuc) {
+		return sanPhamDAO.LayDSSPTheoDanhMuc(madanhmuc);
+	}
+
 }

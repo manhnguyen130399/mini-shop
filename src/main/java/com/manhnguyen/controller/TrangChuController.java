@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.manhnguyen.entity.DanhMucSanPham;
 import com.manhnguyen.entity.SanPham;
+import com.manhnguyen.service.DanhMucService;
 import com.manhnguyen.service.SanPhamServices;
 
 @Controller
@@ -28,6 +30,9 @@ public class TrangChuController {
 	@Autowired
 	SanPhamServices sanPhamServices;
 	
+	@Autowired
+	DanhMucService danhMucService;
+	
 	@GetMapping()
 	@Transactional
 	public String Default(ModelMap map,HttpSession httpSession) {
@@ -39,6 +44,8 @@ public class TrangChuController {
 		}
 		List<SanPham> listSP=sanPhamServices.LayDanhSachSanPhamLimit(0);
 		map.addAttribute("listsanpham",listSP);
+		List<DanhMucSanPham>danhMucSanPhams=danhMucService.LayDanhMuc();
+		map.addAttribute("danhmuc", danhMucSanPhams);
 		return "trangchu";
 	}
 

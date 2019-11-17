@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bootstrap Example</title>
+  <title>Danh Muc</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <jsp:include page="header.jsp"></jsp:include>
@@ -35,11 +35,12 @@
 			         <li class ="active"><a  href="/mini-shop/">TRANG CHỦ</a></li>
 			         <li class="dropdown open">
 			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SẢN PHẨM <span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			            <c:forEach var="value" items="${danhmuc }">
-						<li><a href="#">${value.getTendanhmuc()}</a></li>
-						</c:forEach>
+			          <ul class="dropdown-menu">		    
+				         <c:forEach var="value" items="${danhmuc }">
+							<li><a href="/mini-shop/sanpham/${value.getMadanhmuc() }/${value.getTendanhmuc()}">${value.getTendanhmuc()}</a></li>
+							</c:forEach>
 			          </ul>
+			      
 			        </li>
 			        <li><a href="#">DỊCH VỤ</a></li>
 			        <li><a href="#">LIÊN HỆ</a></li>
@@ -82,43 +83,32 @@
 					</c:forEach>
 				</ul>
 			</div>
-			<div class="col-sm-8 col-md-8">
+			<div class="col-sm-10 col-md-10">
 				
-					<div class="col-sm-4 col-md-4">
-						<img alt="" src='<c:url value="/resources/image/${chitietsp.getHinhsanpham()}.jpg"/>'>
-					</div>
-					
-					<div class="col-sm-8 col-md-8">
-						<h3 id="tensp" data-masp="${chitietsp.getMasanpham()}">${chitietsp.getTensanpham()}</h3>
-						<h4 id="giatien" data-value="${chitietsp.getGiatien()}" style="color: red">${chitietsp.getGiatien()} VNĐ </h4>
-						<table class="table">
-							<thead>
-							<tr>
-								<td><h5>Màu sản phẩm </h5></td>
-								<td><h5>Size sản phẩm</h5></td>
-								<td><h5>Số lượng</h5></td>
+					<div class="row">
+						<span> ${tendanhmuc} </span>
+						<c:forEach var="sanpham" items="${listsanpham}">
+							<div class="col-md-4 col-sm-6">
+								<a href="chitiet/${sanpham.getMasanpham()}">
+									<div class="sanpham wow tada">
+										<img alt="" src='<c:url value="/resources/image/${sanpham.getHinhsanpham()}.jpg"/>'>
+										<br/>
+										<span>${sanpham.getTensanpham()}</span>
+										<br/>
+										<span class="gia">${sanpham.getGiatien()}</span>
+									</div>
+								</a>
 								
-								
-							</tr>
-							
-							
-							</thead>
-							<tbody>
-							<c:forEach var="chitietsanpham" items="${chitietsp.getChiTietSanPhams()}">
-							
-								<tr>
-										<td class="mau" data-mamau="${chitietsanpham.getMauSanPham().getMamau()}">${chitietsanpham.getMauSanPham().getTenmau()} </td>
-										<td class="size"data-size="${chitietsanpham.getSizeSanPham().getMasize()}"> ${chitietsanpham.getSizeSanPham().getSize()} </td>
-										<td class="soluong">${chitietsanpham.getSoluong()}</td>
-										<td><button data-machitiet="${chitietsanpham.getMachitietsanpham()}"class="btn-success btn-gio-hang">Giỏ hàng</button></td>
-								</tr>
-							</c:forEach>
-							
-							</tbody>
+							</div>
+						</c:forEach>
 						
-						</table>
 					
 					</div>
+	</div>
+	</div>
+					
+					
+					
 			</div>
 			
 			
