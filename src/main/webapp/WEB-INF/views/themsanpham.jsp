@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="left-content" >
 	<div class="row">
 	<h3>Product</h3>
-	<table class="table" >
+	<table id="table-sanpham" class="table" >
 		<thead>
 			<tr>
 				<td>
@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li>
+                                    <li class="paging-item">
                                         <a href="#">${i}</a>
                                     </li>
                                 </c:otherwise>
@@ -594,6 +594,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- morris JavaScript -->	
 <script src='<c:url value="/resources/js/raphael-min.js"/>'></script>
 <script src='<c:url value="/resources/js/morris.js"/>'></script>
+<script src='<c:url value="/resources/js/custom.js" />'></script>
 <script>
 	$(document).ready(function() {
 		//BOX BUTTON SHOW AND CLOSE

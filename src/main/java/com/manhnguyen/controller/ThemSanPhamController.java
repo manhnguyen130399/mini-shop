@@ -20,7 +20,7 @@ public class ThemSanPhamController {
 	public String deFault(ModelMap map) {
 		List<SanPham> list=sanPhamServices.LayDanhSachSanPhamLimit(0);
 		List<SanPham>allsp=sanPhamServices.LayDanhSachSanPhamLimit(-1);
-		int tongsopage=allsp.size()/1;
+		double tongsopage=Math.ceil((double)allsp.size()/5);
 		map.addAttribute("listsp",list);
 		map.addAttribute("allsp", allsp);
 		map.addAttribute("tongsopage",tongsopage);

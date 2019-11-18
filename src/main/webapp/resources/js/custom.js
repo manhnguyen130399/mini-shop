@@ -149,4 +149,25 @@ $(document).ready(function(){
 							}	
 	})
 	})
+	$("body").on("click",".paging-item",function(){
+		$(".paging-item").removeClass("active");
+		$(this).addClass("active");
+		var sotrang=$(this).text();
+		//5 là số sản phẩm đc hiện ra
+		var spbd=(sotrang-1)*5;
+		$.ajax({
+			url:"/mini-shop/api/LaySanPhamLimit",
+			type:"GET",
+			data:{
+				spbd:spbd,
+				
+			},
+			success: function(value){
+				var body=$("#table-sanpham").find("tbody");
+				body.empty();
+				body.append(value);
+				
+			}	
+	})
+	})
 })

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.manhnguyen.entity.GioHang;
+import com.manhnguyen.entity.SanPham;
 import com.manhnguyen.service.NhanVienService;
+import com.manhnguyen.service.SanPhamServices;
 
 @Controller
 @RequestMapping("api/")
@@ -23,6 +25,8 @@ import com.manhnguyen.service.NhanVienService;
 public class APIController {
 	@Autowired
 	NhanVienService nvNhanVienService;
+	@Autowired
+	SanPhamServices sanPhamServices;
 	
 	
 	@GetMapping("KiemTraDangNhap")
@@ -120,8 +124,20 @@ public class APIController {
 		}
 		return "";
 	}
-	public float Giatien(int sl,float giatien) {
-		return sl*giatien;
+	@GetMapping(path="LaySanPhamLimit",produces ="text/plain;charset=utf-8")
+	@ResponseBody
+	public String LaySanPhamLimit(@RequestParam int spbd){
+		String html="";
+		List<SanPham> listSanPhams=sanPhamServices.LayDanhSachSanPhamLimit(spbd);
+		for (SanPham sanPham : listSanPhams) {
+			html+="<tr>";
+			html+="<td><div class='checkbox'><label><input class='checkboxsanpham' type='checkbox' value=''></label></div></td>";
+			html+="<td class='tensp' data-masp='"+sanPham.getMasanpham()+"'>"+sanPham.getTensanpham()+"</td>";
+			html+="<td class='giatien'>"+sanPham.getGiatien()+"</td>";
+			html+="<td class='gianhcho'>"+sanPham.getGianhcho() + "</td>";
+			html+="</tr>";
+		}
+		return html;
 	}
 	
 
