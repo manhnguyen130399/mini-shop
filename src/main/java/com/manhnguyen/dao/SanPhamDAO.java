@@ -53,6 +53,16 @@ public class SanPhamDAO implements SanPhamImpl {
 		List<SanPham> listSanPhams=(List<SanPham>) session.createQuery(query).getResultList();
 		return listSanPhams;
 	}
+
+	@Transactional
+	public boolean XoaSanPhamTheoMaSP(int masp) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		SanPham sanPham=new SanPham();
+		sanPham.setMasanpham(masp);
+		session.delete(sanPham);
+		return false;
+	}
 	
 
 }

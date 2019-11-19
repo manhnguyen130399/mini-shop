@@ -27,4 +27,9 @@ public class SanPhamServices implements SanPhamImpl {
 		return sanPhamDAO.LayDSSPTheoDanhMuc(madanhmuc);
 	}
 
+	public boolean XoaSanPhamTheoMaSP(int masp) {
+		// TODO Auto-generated method stub
+		return sanPhamDAO.XoaSanPhamTheoMaSP(masp);
+	}
+
 }

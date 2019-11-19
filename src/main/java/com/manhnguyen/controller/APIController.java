@@ -131,13 +131,19 @@ public class APIController {
 		List<SanPham> listSanPhams=sanPhamServices.LayDanhSachSanPhamLimit(spbd);
 		for (SanPham sanPham : listSanPhams) {
 			html+="<tr>";
-			html+="<td><div class='checkbox'><label><input class='checkboxsanpham' type='checkbox' value=''></label></div></td>";
+			html+="<td><div class='checkbox'><label><input class='checkboxsanpham' type='checkbox' value='"+sanPham.getMasanpham()+"'></label></div></td>";
 			html+="<td class='tensp' data-masp='"+sanPham.getMasanpham()+"'>"+sanPham.getTensanpham()+"</td>";
 			html+="<td class='giatien'>"+sanPham.getGiatien()+"</td>";
 			html+="<td class='gianhcho'>"+sanPham.getGianhcho() + "</td>";
 			html+="</tr>";
 		}
 		return html;
+	}
+	@GetMapping("XoaSanPham")
+	@ResponseBody
+	public String xoaSpTheoMaSP(@RequestParam int masp) {
+		sanPhamServices.XoaSanPhamTheoMaSP(masp);
+		return"true";
 	}
 	
 

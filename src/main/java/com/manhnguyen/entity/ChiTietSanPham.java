@@ -13,13 +13,13 @@ public class ChiTietSanPham {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int machitietsanpham;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name="masanpham")
 	SanPham sanpham;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name="masize")
 	SizeSanPham sizeSanPham;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name="mamau")
 	MauSanPham mauSanPham;
 	private int soluong;

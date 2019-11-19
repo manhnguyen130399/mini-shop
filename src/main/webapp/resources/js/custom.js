@@ -170,4 +170,33 @@ $(document).ready(function(){
 			}	
 	})
 	})
+	$("#checkall").change(function () {
+		if (this.checked) {
+			$("#table-sanpham input").each(function () {
+				$(this).attr("checked", true);
+			})
+		} else {
+			$("#table-sanpham input").each(function () {
+				$(this).attr("checked", false);
+			})
+		}
+	})
+	$("#xoa-sanpham").click(function() {
+		$("#table-sanpham >tbody input:checked").each(function() {
+			var masp=$(this).val();
+			var This=$(this);
+			$.ajax({
+				url:"/mini-shop/api/XoaSanPham",
+				type:"GET",
+				data:{
+					masp:masp,
+					
+				},
+				success: function(value){
+					This.closest("tr").remove("tr");
+					
+				}	
+		})
+		})
+	})
 })
