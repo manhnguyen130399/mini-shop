@@ -37,7 +37,7 @@
 			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SẢN PHẨM <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
 			            <c:forEach var="value" items="${danhmuc }">
-						<li><a href="#">${value.getTendanhmuc()}</a></li>
+							<li><a href="/mini-shop/sanpham/${value.getMadanhmuc() }/${value.getTendanhmuc()}">${value.getTendanhmuc()}</a></li>
 						</c:forEach>
 			          </ul>
 			        </li>
@@ -78,7 +78,7 @@
 				<h3>DANH MỤC SẢN PHẨM</h3>
 				<ul class="mymenu">
 					<c:forEach var="value" items="${danhmuc }">
-						<li><a href="#">${value.getTendanhmuc()}</a></li>
+						<li><a href="/mini-shop/sanpham/${value.getMadanhmuc() }/${value.getTendanhmuc()}">${value.getTendanhmuc()}</a></li>
 					</c:forEach>
 				</ul>
 			</div>

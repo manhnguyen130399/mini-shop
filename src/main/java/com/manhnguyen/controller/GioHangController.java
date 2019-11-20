@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.manhnguyen.entity.ChiTietHoaDon;
 import com.manhnguyen.entity.ChiTietHoaDonId;
+import com.manhnguyen.entity.DanhMucSanPham;
 import com.manhnguyen.entity.GioHang;
 import com.manhnguyen.entity.HoaDon;
+import com.manhnguyen.entity.SanPham;
 import com.manhnguyen.service.ChiTietHoaDonService;
+import com.manhnguyen.service.DanhMucService;
 import com.manhnguyen.service.HoaDonService;
 
 @Controller
@@ -29,15 +32,20 @@ public class GioHangController {
 	HoaDonService HoaDonService;
 	@Autowired
 	ChiTietHoaDonService chiTietHoaDonService;
+	@Autowired
+	DanhMucService danhMucService;
 	@GetMapping
 	public String Default(HttpSession httpSession, ModelMap map) {
 		if(null != httpSession.getAttribute("giohang"))
 		{
+			
 			List<GioHang>listGioHangs=(List<GioHang>) httpSession.getAttribute("giohang");
 			map.addAttribute("soluongsanphamgiohang",listGioHangs.size());
-			map.addAttribute("giohang", listGioHangs);
 			
+			map.addAttribute("giohang", listGioHangs);
 		}
+		List<DanhMucSanPham>danhMucSanPhams=danhMucService.LayDanhMuc();
+		map.addAttribute("danhmuc", danhMucSanPhams);
 		return "giohang";
 		
 	}
@@ -47,6 +55,7 @@ public class GioHangController {
 			@RequestParam String hinhthucgiaohang,
 			@RequestParam String ghichu
 			) {
+		
 		if(null != httpSession.getAttribute("giohang"))
 		{
 			List<GioHang>listGioHangs=(List<GioHang>) httpSession.getAttribute("giohang");

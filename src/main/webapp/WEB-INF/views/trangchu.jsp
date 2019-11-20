@@ -37,7 +37,6 @@
 			         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SẢN PHẨM <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
 				         <c:forEach var="value" items="${danhmuc }">
-				         	
 							<li><a href="sanpham/${value.getMadanhmuc() }/${value.getTendanhmuc()}">${value.getTendanhmuc()}</a></li>
 						</c:forEach>
 		
