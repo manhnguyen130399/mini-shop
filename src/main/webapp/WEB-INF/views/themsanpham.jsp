@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<label for="mota">Mô tả</label></br>
 		<textarea rows="5" type="text" id="mota" class="form-control"placeholder="Nhập vào mô tả sản phẩm"></textarea></br>
 		<label for="hinhanh">Hình ảnh</label></br>
-		<input type="file"id="hinhanh" class="form-control"/></br>
+		<input type="file"name="hinhanh"id="hinhanh" class="form-control"/></br>
 		<span>Dành cho</span></br>
 		<label class="radio-inline"><input type="radio" name="gianhcho" checked>Nam</label>
 		<label class="radio-inline"><input type="radio" name="gianhcho">Nữ</label></br>
