@@ -21,6 +21,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!-- Custom CSS -->
+<link rel='stylesheet' type='text/css' href='<c:url value="/resources/css/styles.css" />'>
 <link rel='stylesheet' type='text/css' href='<c:url value="/resources/css/style.css" />'>
 <link rel="stylesheet"  type="text/css" href='<c:url value="/resources/css/morris.css"/>'> 
 <!-- Graph CSS -->
@@ -40,28 +41,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	<div class="row">
 	<h3>Product</h3>
+	<form id="formSanPham" >
 	
 	<div class="col-md-5 col-sm-12 form-group">
 		<label for="tensanpham">Tên sản phẩm</label></br>
-		<input type="text" id="tensanpham" class="form-control"placeholder="Nhập vào tên sản phẩm"/></br>
+		<input type="text" id="tensanpham" name="tensanpham" class="form-control"placeholder="Nhập vào tên sản phẩm"/></br>
 		<label for="giatien">Giá sản phẩm</label></br>
-		<input type="text" id="giatien" class="form-control"placeholder="Nhập vào giá sản phẩm"/></br>
+		<input type="text" id="giatien" name="giatien"class="form-control"placeholder="Nhập vào giá sản phẩm"/></br>
 		<div class="form-group">
 		<label for="danhmucsanpham">Danh mục sản phẩm</label>
-		  <select class="form-control" id="danhmucsanpham">
+		  <select name="danhmucsanpham" class="form-control" id="danhmucsanpham">
 		   	<c:forEach var="value" items="${danhmuc }">
 						<option value="${value.getMadanhmuc() }">${value.getTendanhmuc()}</option></br>
 			</c:forEach>
 		  </select>
 		</div>
 		<label for="mota">Mô tả</label></br>
-		<textarea rows="5" type="text" id="mota" class="form-control"placeholder="Nhập vào mô tả sản phẩm"></textarea></br>
+		<textarea rows="5" type="text" id="mota" name="mota" class="form-control"placeholder="Nhập vào mô tả sản phẩm"></textarea></br>
 		<label for="hinhanh">Hình ảnh</label></br>
 		<input type="file"name="hinhanh"id="hinhanh" class="form-control"/></br>
 		<span>Dành cho</span></br>
-		<label class="radio-inline"><input type="radio" name="gianhcho" checked>Nam</label>
-		<label class="radio-inline"><input type="radio" name="gianhcho">Nữ</label></br>
-		<button class="btn btn-primary">Thêm sản phẩm</button>
+		<label class="radio-inline"><input type="radio" name="gianhcho" value="nam" checked>Nam</label>
+		<label class="radio-inline"><input type="radio" name="gianhcho" value="nu">Nữ</label></br>
+		</form>
+		<div id="containerchitietsanpham">
+			<div  class="chitietsanpham">
+			<span>Chi tiết</span></br>
+			 <label for="">Màu sản phẩm</label></br>
+			 <select  name="mausanpham"class="form-control" id="mausanpham">
+			   	<c:forEach var="value" items="${listmau }">
+							<option value="${value.getMamau() }">${value.getTenmau()}</option></br>
+				</c:forEach>
+			  </select>
+			   <label for="">Size sản phẩm</label></br>
+			   <select name="sizesanpham"class="form-control" id="sizesanpham">
+			   	<c:forEach var="value" items="${listsize }">
+							<option value="${value.getMasize() }">${value.getSize()}</option></br>
+				</c:forEach>
+			  </select>
+			  <label for="soluong">Số lượng</label></br>
+			  <input min="1" value="1" type="number"name="soluong"id="soluong" class="form-control"/></br>
+		  </div>
+		  <button class="btn btn-primary btn-chitiet ">Thêm chi tiết</button>
+		
+		</div>
+		<div id="chitietsanpham" class="chitietsanpham">
+			<span>Chi tiết</span></br>
+			 <label for="">Màu sản phẩm</label></br>
+			 <select  name="mausanpham"class="form-control" id="mausanpham">
+			   	<c:forEach var="value" items="${listmau }">
+							<option value="${value.getMamau() }">${value.getTenmau()}</option></br>
+				</c:forEach>
+			  </select>
+			   <label for="">Size sản phẩm</label></br>
+			   <select name="sizesanpham"class="form-control" id="sizesanpham">
+			   	<c:forEach var="value" items="${listsize }">
+							<option value="${value.getMasize() }">${value.getSize()}</option></br>
+				</c:forEach>
+			  </select>
+			  <label for="soluong">Số lượng</label></br>
+			  <input min="1" value="1" type="number"name="soluong"id="soluong" class="form-control"/></br>
+		 	<button class="btn btn-primary btn-chitiet">Thêm chi tiết</button>
+		  </div>
+		<button id="btnThemSanPham"class="btn btn-primary">Thêm sản phẩm</button>
 	</div>
 	
 	

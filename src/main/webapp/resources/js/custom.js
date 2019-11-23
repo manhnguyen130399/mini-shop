@@ -217,4 +217,44 @@ $(document).ready(function(){
 			}	
 	})
 	})
+	$("body").on("click",".btn-chitiet",function(){
+		$(this).remove();
+		var chitietclone=$("#chitietsanpham").clone().removeAttr("id");
+		$("#containerchitietsanpham").append(chitietclone);
+	})
+	$("#btnThemSanPham").click(function(e) {
+		e.preventDefault();
+		var formdata=$("#formSanPham").serializeArray();
+		json={};
+		arraychitiet=[];
+		
+		$.each(formdata,function(i,field){
+			json[field.name]=field.value;
+		})
+		$("#containerchitietsanpham >.chitietsanpham").each(function(){
+			objectChitiet={};
+			mausanpham=$(this).find("#mausanpham").val();
+			sizesanpham=$(this).find("#sizesanpham").val();
+			soluong=$(this).find("#soluong").val();
+			objectChitiet["mausanpham"]=mausanpham;
+			objectChitiet["sizesanpham"]=sizesanpham;
+			objectChitiet["soluong"]=soluong;
+			arraychitiet.push(objectChitiet);
+			
+		})
+		json["chitietsanpham"]=arraychitiet;
+		console.log(json);
+		$.ajax({
+			url:"/mini-shop/api/themsanpham",
+			type:"POST",
+			data:{
+				datajson:JSON.stringify(json)
+			},
+			success: function(value){
+				
+				
+			}	
+	})
+	})
+	
 })

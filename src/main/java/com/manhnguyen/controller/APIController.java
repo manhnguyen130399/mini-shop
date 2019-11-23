@@ -173,6 +173,10 @@ public class APIController {
 		System.out.println(path_save_file);
 		return"true";
 	}
-	
+	@PostMapping("themsanpham")
+	@ResponseBody
+	public void themsanpham(@RequestParam String datajson) {
+		System.out.println(datajson);
+	}
 
 }
