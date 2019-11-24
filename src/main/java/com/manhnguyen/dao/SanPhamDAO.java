@@ -63,6 +63,14 @@ public class SanPhamDAO implements SanPhamImpl {
 		session.delete(sanPham);
 		return false;
 	}
+
+	@Transactional
+	public boolean ThemSanPham(SanPham sp) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		int id=(Integer) session.save(sp);
+		return false;
+	}
 	
 
 }

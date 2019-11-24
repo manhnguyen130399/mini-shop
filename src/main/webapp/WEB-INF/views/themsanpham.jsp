@@ -58,8 +58,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<label for="mota">Mô tả</label></br>
 		<textarea rows="5" type="text" id="mota" name="mota" class="form-control"placeholder="Nhập vào mô tả sản phẩm"></textarea></br>
-		<label for="hinhanh">Hình ảnh</label></br>
-		<input type="file"name="hinhanh"id="hinhanh" class="form-control"/></br>
+		<label for="hinhsanpham">Hình ảnh</label></br>
+		<input type="file"name="hinhsanpham"id="hinhsanpham" class="form-control"/></br>
 		<span>Dành cho</span></br>
 		<label class="radio-inline"><input type="radio" name="gianhcho" value="nam" checked>Nam</label>
 		<label class="radio-inline"><input type="radio" name="gianhcho" value="nu">Nữ</label></br>
@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<option value="${value.getMamau() }">${value.getTenmau()}</option></br>
 				</c:forEach>
 			  </select>
-			   <label for="">Size sản phẩm</label></br>
+			   <label for="sizesanpham">Size sản phẩm</label></br>
 			   <select name="sizesanpham"class="form-control" id="sizesanpham">
 			   	<c:forEach var="value" items="${listsize }">
 							<option value="${value.getMasize() }">${value.getSize()}</option></br>
@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <button class="btn btn-primary btn-chitiet ">Thêm chi tiết</button>
 		
 		</div>
-		<div id="chitietsanpham" class="chitietsanpham">
+		<div class="chitietsanpham" id="chitietsanpham">
 			<span>Chi tiết</span></br>
 			 <label for="">Màu sản phẩm</label></br>
 			 <select  name="mausanpham"class="form-control" id="mausanpham">

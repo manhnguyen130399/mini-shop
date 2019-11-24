@@ -3,8 +3,10 @@ package com.manhnguyen.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -21,8 +23,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.manhnguyen.entity.ChiTietSanPham;
+import com.manhnguyen.entity.DanhMucSanPham;
 import com.manhnguyen.entity.GioHang;
+import com.manhnguyen.entity.MauSanPham;
 import com.manhnguyen.entity.SanPham;
+import com.manhnguyen.entity.SizeSanPham;
 import com.manhnguyen.service.NhanVienService;
 import com.manhnguyen.service.SanPhamServices;
 
@@ -175,8 +186,42 @@ public class APIController {
 	}
 	@PostMapping("themsanpham")
 	@ResponseBody
-	public void themsanpham(@RequestParam String datajson) {
-		System.out.println(datajson);
-	}
+	public void themsanpham(@RequestParam String datajson) throws IOException {
+			ObjectMapper map=new ObjectMapper();
+		
+			JsonNode jsonObject=map.readTree(datajson);
+			JsonNode jsonChitiet=jsonObject.get("chitietsanphamS");
+			SanPham sanPham=new SanPham();
+			DanhMucSanPham danhMucSanPham=new DanhMucSanPham();
+			danhMucSanPham.setMadanhmuc(jsonObject.get("danhmucsanpham").asInt());
+			Set<ChiTietSanPham>listchititet=new HashSet<ChiTietSanPham>();
+			for (JsonNode jsonNode : jsonChitiet) {
+				ChiTietSanPham chiTietSanPham=new ChiTietSanPham();
+				MauSanPham mau=new MauSanPham();
+				mau.setMamau(jsonNode.get("mausanpham").asInt());
+				chiTietSanPham.setMauSanPham(mau);
+				
+				SizeSanPham size=new SizeSanPham();
+				size.setMasize(jsonNode.get("sizesanpham").asInt());
+				chiTietSanPham.setSizeSanPham(size);
+				
+				chiTietSanPham.setSoluong(jsonNode.get("soluong").asInt());
+				listchititet.add(chiTietSanPham);
+			}
+			
+			sanPham.setTensanpham(jsonObject.get("tensanpham").asText());
+			sanPham.setGiatien(jsonObject.get("giatien").asText());
+			sanPham.setMota(jsonObject.get("mota").asText());
+			sanPham.setHinhsanpham(jsonObject.get("hinhsanpham").asText());
+			sanPham.setGianhcho(jsonObject.get("gianhcho").asText());
+			sanPham.setChiTietSanPhams(listchititet);
+			sanPham.setDanhMucSanPham(danhMucSanPham);
+			System.out.println("madanhmuc"+danhMucSanPham.getMadanhmuc());
+			
+			sanPhamServices.ThemSanPham(sanPham);
+			
+		
+		}
+	
 
 }

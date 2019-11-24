@@ -32,4 +32,9 @@ public class SanPhamServices implements SanPhamImpl {
 		return sanPhamDAO.XoaSanPhamTheoMaSP(masp);
 	}
 
+	public boolean ThemSanPham(SanPham sp) {
+		// TODO Auto-generated method stub
+		return sanPhamDAO.ThemSanPham(sp);
+	}
+
 }

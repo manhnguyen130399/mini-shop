@@ -200,8 +200,10 @@ $(document).ready(function(){
 		})
 	})
 	var files=[];
+	var tenhinh="";
 	$("#hinhanh").change(function(event) {
 		files=event.target.files;
+		tenhinh=file[0].name;
 		forms=new FormData();
 		forms.append("file",files[0]);
 		$.ajax({
@@ -242,7 +244,8 @@ $(document).ready(function(){
 			arraychitiet.push(objectChitiet);
 			
 		})
-		json["chitietsanpham"]=arraychitiet;
+		json["chitietsanphamS"]=arraychitiet;
+		json["hinhsanpham"]=tenhinh;
 		console.log(json);
 		$.ajax({
 			url:"/mini-shop/api/themsanpham",
