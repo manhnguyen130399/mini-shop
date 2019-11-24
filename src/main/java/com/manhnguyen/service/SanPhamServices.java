@@ -37,4 +37,9 @@ public class SanPhamServices implements SanPhamImpl {
 		return sanPhamDAO.ThemSanPham(sp);
 	}
 
+	public boolean CapNhatSanPham(SanPham sp) {
+		// TODO Auto-generated method stub
+		return sanPhamDAO.CapNhatSanPham(sp);
+	}
+
 }

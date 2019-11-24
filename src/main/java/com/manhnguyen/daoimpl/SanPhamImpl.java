@@ -11,4 +11,5 @@ public interface SanPhamImpl {
 	List<SanPham> LayDSSPTheoDanhMuc(int madanhmuc);
 	boolean XoaSanPhamTheoMaSP(int masp);
 	boolean ThemSanPham(SanPham sp);
+	boolean CapNhatSanPham(SanPham sp);
 }

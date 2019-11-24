@@ -1,5 +1,6 @@
 package com.manhnguyen.entity;
 
+import java.io.Serializable;
 import java.util.Set;import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity(name="DANHMUCSANPHAM")
-public class DanhMucSanPham {
+public class DanhMucSanPham implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int madanhmuc;
 	private String tendanhmuc;
 	private String hinhdanhmuc;
-	@OneToMany
+	@OneToMany()
 	@JoinColumn(name="madanhmuc")
-	Set<SanPham>danhsachsanpham;
+	private Set<SanPham>danhsachsanpham;
+	
 	public Set<SanPham> getDanhsachsanpham() {
 		return danhsachsanpham;
 	}

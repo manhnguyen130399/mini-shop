@@ -1,5 +1,7 @@
 package com.manhnguyen.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "CHITIETSANPHAM")
-public class ChiTietSanPham {
+public class ChiTietSanPham implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int machitietsanpham;

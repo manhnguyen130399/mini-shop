@@ -10,6 +10,9 @@ html, body{
   	overflow-x: hidden;
 	background-color: white;
 }
+.hidden{
+	display: none;
+}
 body a{
 	transition:0.5s all;
 	-webkit-transition:0.5s all;

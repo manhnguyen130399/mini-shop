@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	var masp=0;
 	
 	$("#cot1").click(function () {
 		$(this).addClass("activiedlink")		
@@ -201,9 +202,9 @@ $(document).ready(function(){
 	})
 	var files=[];
 	var tenhinh="";
-	$("#hinhanh").change(function(event) {
+	$("#hinhsanpham").change(function(event) {
 		files=event.target.files;
-		tenhinh=file[0].name;
+		tenhinh=event.target.files[0].name;
 		forms=new FormData();
 		forms.append("file",files[0]);
 		$.ajax({
@@ -246,6 +247,7 @@ $(document).ready(function(){
 		})
 		json["chitietsanphamS"]=arraychitiet;
 		json["hinhsanpham"]=tenhinh;
+		alert(tenhinh);
 		console.log(json);
 		$.ajax({
 			url:"/mini-shop/api/themsanpham",
@@ -255,9 +257,90 @@ $(document).ready(function(){
 			},
 			success: function(value){
 				
-				
+				console.log(value);
 			}	
 	})
 	})
 	
-})
+	$("body").on("click", ".capnhatsanpham", function(){
+		masp = $(this).attr("data-id");
+		$("#btnThemCapNhat").removeClass("hidden");
+		$("#btnThoat").removeClass("hidden");
+		$("#btnThemSanPham").addClass("hidden");
+		$.ajax({
+			url: "/mini-shop/api/laydssanphamtheoma",
+			type: "POST",
+			data: {
+				id: masp
+			},
+			success: function (value) {
+				// hien nhung j json trả ve len thanh phan trong form
+				console.log(value);
+				$("#tensanpham").val(value.tensanpham);
+				$("#giatien").val(value.giatien);
+				$("#mota").val(value.mota);
+				if(value.gianhcho=="nam"){
+					$("#rdnam").prop("checked",true);
+					
+				}else{
+					$("#rdnu").prop("checked",true);
+				}
+				//danhmucsapham không update
+				$("#danhmucsanpham").empty();
+				
+				$("#containerchitietsanpham").empty();
+				for(i=0;i<value.chiTietSanPhams.length;i++){
+					var chitietclone=$("#chitietsanpham").clone().removeAttr("id");
+					if(i<value.chiTietSanPhams.length){
+						chitietclone.find(".btn-chitiet").remove();
+					}
+					
+					chitietclone.find("#mausanpham").val(value.chiTietSanPhams[i].mauSanPham.mamau);
+					chitietclone.find("#sizesanpham").val(value.chiTietSanPhams[i].sizeSanPham.masize);
+					chitietclone.find("#soluong").val(value.chiTietSanPhams[i].soluong);
+					$("#containerchitietsanpham").append(chitietclone);
+				}
+				
+			
+			}
+
+
+		});
+	$("#btnThemCapNhat").click(function(e) {
+		e.preventDefault();
+		var formdata=$("#formSanPham").serializeArray();
+		json={};
+		arraychitiet=[];
+		
+		$.each(formdata,function(i,field){
+			json[field.name]=field.value;
+		})
+		$("#containerchitietsanpham >.chitietsanpham").each(function(){
+			objectChitiet={};
+			mausanpham=$(this).find("#mausanpham").val();
+			sizesanpham=$(this).find("#sizesanpham").val();
+			soluong=$(this).find("#soluong").val();
+			objectChitiet["mausanpham"]=mausanpham;
+			objectChitiet["sizesanpham"]=sizesanpham;
+			objectChitiet["soluong"]=soluong;
+			arraychitiet.push(objectChitiet);
+			
+		})
+		json["masp"]=masp;
+		json["chitietsanphamS"]=arraychitiet;
+		json["hinhsanpham"]=tenhinh;
+		console.log(json);
+		$.ajax({
+			url:"/mini-shop/api/capnhatsanpham",
+			type:"POST",
+			data:{
+				datajson:JSON.stringify(json)
+			},
+			success: function(value){
+				
+				console.log(value);
+			}	
+	})
+	})
+	})
+});

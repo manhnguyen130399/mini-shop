@@ -61,8 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<label for="hinhsanpham">Hình ảnh</label></br>
 		<input type="file"name="hinhsanpham"id="hinhsanpham" class="form-control"/></br>
 		<span>Dành cho</span></br>
-		<label class="radio-inline"><input type="radio" name="gianhcho" value="nam" checked>Nam</label>
-		<label class="radio-inline"><input type="radio" name="gianhcho" value="nu">Nữ</label></br>
+		<label class="radio-inline"><input type="radio" id="rdnam" name="gianhcho" value="nam" checked>Nam</label>
+		<label class="radio-inline"><input type="radio" id="rdnu"name="gianhcho" value="nu">Nữ</label></br>
 		</form>
 		<div id="containerchitietsanpham">
 			<div  class="chitietsanpham">
@@ -82,6 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  <label for="soluong">Số lượng</label></br>
 			  <input min="1" value="1" type="number"name="soluong"id="soluong" class="form-control"/></br>
 		  </div>
+		  
 		  <button class="btn btn-primary btn-chitiet ">Thêm chi tiết</button>
 		
 		</div>
@@ -103,7 +104,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  <input min="1" value="1" type="number"name="soluong"id="soluong" class="form-control"/></br>
 		 	<button class="btn btn-primary btn-chitiet">Thêm chi tiết</button>
 		  </div>
-		<button id="btnThemSanPham"class="btn btn-primary">Thêm sản phẩm</button>
+		  <p>
+		  </br>
+		<button id="btnThemSanPham"class="btn btn-primary ">Thêm sản phẩm</button>
+		<button id="btnThemCapNhat"class="btn btn-primary hidden">Cập nhật sản phẩm</button>
+		<button id="btnThoat"class="btn btn-primary hidden">Thoát</button>
+		</p>
 	</div>
 	
 	
@@ -138,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<td class="tensp"data-masp="${value.getMasanpham()}">${value.getTensanpham()  }</td>
 												<td class="giatien" data-value="${value.getGiatien() }">${value.getGiatien() }</td>
 												<td class="gianhcho" data-gianhcho="${value.getGianhcho()  }">${value.getGianhcho()  } </td>	
-												
+												<td class="btn btn-warning capnhatsanpham" data-id="${value.getMasanpham()}">Sửa</td>
 										</tr>
 							
 							

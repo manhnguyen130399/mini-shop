@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.manhnguyen.entity.ChiTietSanPham;
 import com.manhnguyen.entity.DanhMucSanPham;
 import com.manhnguyen.entity.GioHang;
+import com.manhnguyen.entity.JSONSanPham;
 import com.manhnguyen.entity.MauSanPham;
 import com.manhnguyen.entity.SanPham;
 import com.manhnguyen.entity.SizeSanPham;
@@ -43,6 +44,7 @@ import com.manhnguyen.service.SanPhamServices;
 public class APIController {
 	@Autowired
 	NhanVienService nvNhanVienService;
+	
 	@Autowired
 	SanPhamServices sanPhamServices;
 	
@@ -153,6 +155,7 @@ public class APIController {
 			html+="<td class='tensp' data-masp='"+sanPham.getMasanpham()+"'>"+sanPham.getTensanpham()+"</td>";
 			html+="<td class='giatien'>"+sanPham.getGiatien()+"</td>";
 			html+="<td class='gianhcho'>"+sanPham.getGianhcho() + "</td>";
+			html+="<td class='btn btn-warning capnhatsanpham' data-id="+sanPham.getMasanpham()+">Sửa</td>";
 			html+="</tr>";
 		}
 		return html;
@@ -220,7 +223,88 @@ public class APIController {
 			
 			sanPhamServices.ThemSanPham(sanPham);
 			
+		}
+	@PostMapping(path="laydssanphamtheoma", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public JSONSanPham layDSSpTheoMa(@RequestParam int id) {
+		JSONSanPham json_sp = new JSONSanPham();
 		
+		SanPham sp =  sanPhamServices.LayDanhSachChiTietSanPham(id);
+		
+		json_sp.setMasanpham(sp.getMasanpham());;
+		json_sp.setTensanpham(sp.getTensanpham());
+		json_sp.setGiatien(sp.getGiatien());
+		json_sp.setMota(sp.getMota());
+		json_sp.setGianhcho(sp.getGianhcho());
+		json_sp.setHinhsanpham(sp.getHinhsanpham());
+		//json_sp.setDanhMucSanPham(1);
+		//sai chỗ này
+//		DanhMucSanPham danhMucSanPham = new DanhMucSanPham();
+//		danhMucSanPham.setMadanhmuc(sp.getDanhMucSanPham().getMadanhmuc());
+//		danhMucSanPham.setTendanhmuc(sp.getDanhMucSanPham().getTendanhmuc());
+//		
+//		json_sp.setDanhMucSanPham(danhMucSanPham);
+		
+		Set<ChiTietSanPham> chiTietSanPhams = new HashSet<ChiTietSanPham>();
+		for (ChiTietSanPham value : sp.getChiTietSanPhams()) {
+			ChiTietSanPham chiTietSp = new ChiTietSanPham();
+			
+			chiTietSp.setMachitietsanpham(value.getMachitietsanpham());
+			
+			MauSanPham mauSanPham = new MauSanPham();
+			mauSanPham.setMamau(value.getMauSanPham().getMamau());
+			mauSanPham.setTenmau(value.getMauSanPham().getTenmau());
+			
+			chiTietSp.setMauSanPham(mauSanPham);
+			
+			SizeSanPham sizeSanPham = new SizeSanPham();
+			sizeSanPham.setMasize(value.getSizeSanPham().getMasize());
+			sizeSanPham.setSize(value.getSizeSanPham().getSize());
+			
+			chiTietSp.setSizeSanPham(sizeSanPham);
+			chiTietSp.setSoluong(value.getSoluong());
+			
+			chiTietSanPhams.add(chiTietSp);
+		}
+		json_sp.setChiTietSanPhams(chiTietSanPhams);
+		
+		return json_sp;
+	}
+	@PostMapping("capnhatsanpham")
+	@ResponseBody
+	public void capnhatsanpham(@RequestParam String datajson) throws IOException {
+			ObjectMapper map=new ObjectMapper();
+		
+			JsonNode jsonObject=map.readTree(datajson);
+			JsonNode jsonChitiet=jsonObject.get("chitietsanphamS");
+			SanPham sanPham=new SanPham();
+			//DanhMucSanPham danhMucSanPham=new DanhMucSanPham();
+			//danhMucSanPham.setMadanhmuc(jsonObject.get("danhmucsanpham").asInt());
+			Set<ChiTietSanPham>listchititet=new HashSet<ChiTietSanPham>();
+			for (JsonNode jsonNode : jsonChitiet) {
+				ChiTietSanPham chiTietSanPham=new ChiTietSanPham();
+				MauSanPham mau=new MauSanPham();
+				mau.setMamau(jsonNode.get("mausanpham").asInt());
+				chiTietSanPham.setMauSanPham(mau);
+				
+				SizeSanPham size=new SizeSanPham();
+				size.setMasize(jsonNode.get("sizesanpham").asInt());
+				chiTietSanPham.setSizeSanPham(size);
+				
+				chiTietSanPham.setSoluong(jsonNode.get("soluong").asInt());
+				listchititet.add(chiTietSanPham);
+			}
+			
+			sanPham.setTensanpham(jsonObject.get("tensanpham").asText());
+			sanPham.setGiatien(jsonObject.get("giatien").asText());
+			sanPham.setMota(jsonObject.get("mota").asText());
+			sanPham.setHinhsanpham(jsonObject.get("hinhsanpham").asText());
+			sanPham.setGianhcho(jsonObject.get("gianhcho").asText());
+			sanPham.setChiTietSanPhams(listchititet);
+			//sanPham.setDanhMucSanPham(danhMucSanPham);
+			sanPham.setMasanpham(jsonObject.get("masp").asInt());
+			sanPhamServices.CapNhatSanPham(sanPham);
+			
 		}
 	
 

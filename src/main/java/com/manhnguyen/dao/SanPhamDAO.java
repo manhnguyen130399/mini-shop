@@ -71,6 +71,13 @@ public class SanPhamDAO implements SanPhamImpl {
 		int id=(Integer) session.save(sp);
 		return false;
 	}
+	@Transactional
+	public boolean CapNhatSanPham(SanPham sp) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		session.update(sp);
+		return false;
+	}
 	
 
 }
