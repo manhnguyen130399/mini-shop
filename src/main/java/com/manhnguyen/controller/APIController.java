@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.manhnguyen.entity.ChiTietSanPham;
 import com.manhnguyen.entity.DanhMucSanPham;
 import com.manhnguyen.entity.GioHang;
+import com.manhnguyen.entity.JSONDanhMucSanPham;
 import com.manhnguyen.entity.JSONSanPham;
 import com.manhnguyen.entity.MauSanPham;
 import com.manhnguyen.entity.SanPham;
@@ -237,13 +238,12 @@ public class APIController {
 		json_sp.setMota(sp.getMota());
 		json_sp.setGianhcho(sp.getGianhcho());
 		json_sp.setHinhsanpham(sp.getHinhsanpham());
-		//json_sp.setDanhMucSanPham(1);
-		//sai chỗ này
-//		DanhMucSanPham danhMucSanPham = new DanhMucSanPham();
-//		danhMucSanPham.setMadanhmuc(sp.getDanhMucSanPham().getMadanhmuc());
-//		danhMucSanPham.setTendanhmuc(sp.getDanhMucSanPham().getTendanhmuc());
-//		
-//		json_sp.setDanhMucSanPham(danhMucSanPham);
+		
+		DanhMucSanPham danhMucSanPham = new DanhMucSanPham();
+		danhMucSanPham.setMadanhmuc(sp.getDanhMucSanPham().getMadanhmuc());
+		danhMucSanPham.setTendanhmuc(sp.getDanhMucSanPham().getTendanhmuc());
+		
+		json_sp.setDanhMucSanPham(danhMucSanPham);
 		
 		Set<ChiTietSanPham> chiTietSanPhams = new HashSet<ChiTietSanPham>();
 		for (ChiTietSanPham value : sp.getChiTietSanPhams()) {
@@ -278,8 +278,9 @@ public class APIController {
 			JsonNode jsonObject=map.readTree(datajson);
 			JsonNode jsonChitiet=jsonObject.get("chitietsanphamS");
 			SanPham sanPham=new SanPham();
-			//DanhMucSanPham danhMucSanPham=new DanhMucSanPham();
-			//danhMucSanPham.setMadanhmuc(jsonObject.get("danhmucsanpham").asInt());
+			DanhMucSanPham danhMucSanPham=new DanhMucSanPham();
+			danhMucSanPham.setMadanhmuc(jsonObject.get("danhmucsanpham").asInt());
+			System.out.println(danhMucSanPham.getMadanhmuc());
 			Set<ChiTietSanPham>listchititet=new HashSet<ChiTietSanPham>();
 			for (JsonNode jsonNode : jsonChitiet) {
 				ChiTietSanPham chiTietSanPham=new ChiTietSanPham();
@@ -301,7 +302,7 @@ public class APIController {
 			sanPham.setHinhsanpham(jsonObject.get("hinhsanpham").asText());
 			sanPham.setGianhcho(jsonObject.get("gianhcho").asText());
 			sanPham.setChiTietSanPhams(listchititet);
-			//sanPham.setDanhMucSanPham(danhMucSanPham);
+			sanPham.setDanhMucSanPham(danhMucSanPham);
 			sanPham.setMasanpham(jsonObject.get("masp").asInt());
 			sanPhamServices.CapNhatSanPham(sanPham);
 			

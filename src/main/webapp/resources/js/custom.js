@@ -285,8 +285,7 @@ $(document).ready(function(){
 				}else{
 					$("#rdnu").prop("checked",true);
 				}
-				//danhmucsapham không update
-				$("#danhmucsanpham").empty();
+				$("#danhmucsanpham").val(value.danhMucSanPham.madanhmuc);
 				
 				$("#containerchitietsanpham").empty();
 				for(i=0;i<value.chiTietSanPhams.length;i++){

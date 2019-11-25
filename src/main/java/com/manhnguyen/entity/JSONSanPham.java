@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class JSONSanPham {
 	private int masanpham;
-	private int danhMucSanPham;
+	private DanhMucSanPham danhMucSanPham;
 	private String tensanpham;
 	private String giatien;
 	private String mota;
@@ -18,10 +18,10 @@ public class JSONSanPham {
 	public void setMasanpham(int masanpham) {
 		this.masanpham = masanpham;
 	}
-	public int getDanhMucSanPham() {
+	public DanhMucSanPham getDanhMucSanPham() {
 		return danhMucSanPham;
 	}
-	public void setDanhMucSanPham(int danhMucSanPham) {
+	public void setDanhMucSanPham(DanhMucSanPham danhMucSanPham) {
 		this.danhMucSanPham = danhMucSanPham;
 	}
 	public String getTensanpham() {
